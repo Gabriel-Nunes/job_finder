@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'jobs/css/find_jobs.css' %}">
+    <link rel="stylesheet" href="{% static 'jobs/css/profile.css' %}">
+{% endblock %}
+
+{% block 'body' %}
+<div class="container">
+    <br>
+        <h2 class="titulo" style="bottom: 20px;">Update job</h2>
+        <br><br>
+        <div class="row">
+        <div class="col-sm">
+            <br>
+            <form action="{% url 'update_job' job.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <p>Title:</p>
+                    <input type="text" class="form-control" value="{{job.title}}" name="title">
+                <p style="margin-top: 20px;">Description:</p>
+                    <input type="text" class="form-control" value="{{job.description}}" name="description">
+                <p style="margin-top: 20px;">Category:</p>
+                    <select class="form-control" name="category">
+                        {% if job.category == 'D' %}:
+                            <option value="D" selected>Design</option>
+                            <option value="VE">Video Edition</option>
+                        {% else %}
+                            <option value="D">Design</option>
+                            <option value="VE" selected>Video Edition</option>
+                        {% endif %}
+                    </select>
+                <p style="margin-top: 20px;">Price:</p>
+                    <input  type="text" class="form-control" value="{{job.price}}" placeholder="{{job.price}}" name="price">
+
+                <p style="margin-top: 20px;">Due to:</p>
+                    <input type="datetime-local" class="form-control" value="{{job.deadline|date:'Y-m-d'}}T{{job.deadline|time:'H:i:s'}}" name="deadline">
+                <p style="margin-top: 20px;">References:</p>
+                    <input type="file" name="file">
+                <br>
+                <input type="submit" class="btn btn-success btn-lg" value="UPDATE" style="margin-top: 40px;">
+                <input type="hidden" value="{{job.id}}" name="job_id">
+            </form>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
