@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'jobs/css/find_jobs.css' %}">
+    <link rel="stylesheet" href="{% static 'jobs/css/profile.css' %}">
+{% endblock %}
+
+{% block 'body' %}
+<div class="container">
+    <br>
+        <h2 class="titulo" style="bottom: 20px;">Create a job</h2>
+        <br><br>
+        <div class="row">
+        <div class="col-sm">
+            <br>
+            <form action="{% url 'create_job' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <p>Title:</p>
+                    <input type="text" class="form-control" name="title">
+                <p style="margin-top: 20px;">Description:</p>
+                    <input type="text" class="form-control" name="description">
+                <p style="margin-top: 20px;">Category:</p>
+                    <select class="form-control" name="category">
+                        <option value=""></option>
+                        <option value="D">Design</option>
+                        <option value="VE">Video Edition</option>
+                    </select>
+                <p style="margin-top: 20px;">Price:</p>
+                    <input type="text" class="form-control" name="price">
+                <p style="margin-top: 20px;">Deadline:</p>
+                    <input type="datetime-local" class="form-control" name="deadline">
+                <p style="margin-top: 20px;">References:</p>
+                    <input type="file" name="file">
+                <br>
+                <input type="submit" class="btn btn-success btn-lg" value="CREATE" style="margin-top: 40px;">
+            </form>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
