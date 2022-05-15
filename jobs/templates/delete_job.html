@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'header' %}
+    <link rel="stylesheet" href="{% static 'jobs/css/find_jobs.css' %}">
+{% endblock 'header' %}
+
+{% block 'body' %}
+<div class="container">
+    <div class="col"></div>
+        <div class="row">
+            <h2 class="header-job">Are you shure you want to delete {{job.title}}?</h2>
+            <br>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <a href="{% url 'delete_job' job.id %}" class="btn btn-danger">Yes</a>
+            </div>
+            <div class="col-sm">
+                <a href="{% url 'update_job' job.id %}" class="btn btn-success">No</a>
+            </div>
+        </div>
+
+    </div>
+{% endblock 'body' %}

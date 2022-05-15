@@ -9,33 +9,33 @@
     <div class="container">
     <br>
     <br>
-    <div class="row">
-        <div class="col-sm">
-        <form action="{% url 'find_jobs' %}" method="GET">{% csrf_token %}
-            <input type="text" class="form-control" placeholder="Lowest price" name="lowest_price">
-            <br>
-            <input type="text" class="form-control" placeholder="Highest price" name="highest_price">
+        <div class="row">
+            <div class="col-sm">
+            <form action="{% url 'find_jobs' %}" method="GET">{% csrf_token %}
+                <input type="text" class="form-control" placeholder="Lowest price" name="lowest_price">
+                <br>
+                <input type="text" class="form-control" placeholder="Highest price" name="highest_price">
+            </div>
+            <div class="col-sm">
+                <input type="date" class="form-control" name="short_date">
+                <br>
+                <input type="date" class="form-control" name="long_date">
+            </div>
+            <div class="col-sm">
+                <select class="form-control" name="category">
+                    <option value="ALL">Categories</option>
+                    <option value="D">Design</option>
+                    <option value="VE">Video edition</option>
+                </select>
+                <br>
+                <input type="submit" class="btn btn-success btn-lg" value="FILTER">
+            </form>
+            </div>
         </div>
-        <div class="col-sm">
-            <input type="date" class="form-control" name="short_date">
-            <br>
-            <input type="date" class="form-control" name="long_date">
-        </div>
-        <div class="col-sm">
-            <select class="form-control" name="category">
-                <option value="ALL">Categories</option>
-                <option value="D">Design</option>
-                <option value="VE">Video edition</option>
-            </select>
-            <br>
-            <input type="submit" class="btn btn-success btn-lg" value="FILTER">
-        </form>
-        </div>
-    </div>
     <br>
     <br>
     <h2 class="titulo">AVAILABLE JOBS:</h2>
-    <div class="row justify-content-around">
+        <div class="row justify-content-around">
         
         {% for job in jobs %}
             
@@ -74,7 +74,7 @@
                 </div>
             </div>
 
-            <!-- MODAL BEGGINING -->
+            <!-- MODAL DETAILS -->
             <div class="modal fade" id="modal-{{job.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div style="background-color: #333;" class="modal-content">
@@ -120,7 +120,9 @@
                                     <a href="{% url 'get_job' job.id %}" class="btn btn-success btn-lg">GET THIS JOB</a>
                                 </div>
                                 <div class="col" style="text-align: right; margin-top: 15px;">
-                                    <a href="{% url 'update_job' job.id %}">Edit</a>
+                                    {% if job.creator == request.user %}
+                                        <a href="{% url 'update_job' job.id %}">Edit</a>
+                                    {% endif %}
                                 </div>
 
                             </div>
@@ -133,6 +135,6 @@
 
         {% endfor %}
         
-    </div>
+        </div>
     </div>
 {% endblock %}

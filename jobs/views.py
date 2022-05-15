@@ -1,3 +1,4 @@
+import re
 from unicodedata import category
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -125,7 +126,7 @@ def create_job(request):
         return redirect('/jobs/find_jobs')
 
 # TODO create error messages
-@login_required
+@login_required(login_url='/auth/login')
 def update_job(request, job_id):
     if request.method == 'GET':
         job = Jobs.objects.get(id=job_id)
@@ -150,3 +151,24 @@ def update_job(request, job_id):
         job.save()
 
         return redirect('/jobs/find_jobs')
+
+@login_required(login_url='/auth/login')
+def confirm_delete(request, job_id):
+    if request.method == 'GET':
+        job = Jobs.objects.get(id=job_id)
+
+        if job.creator == request.user:
+            return render(request, 'delete_job.html', context={'job': job})
+        else:
+            return HttpResponse('You are not allowed to delete this job.')
+
+@login_required(login_url='/auth/login')
+def delete_job(request, job_id):
+    if request.method == 'GET':
+        job = Jobs.objects.get(id=job_id)
+
+        if job.creator == request.user:
+            job.delete()
+            return redirect('/jobs/find_jobs')
+        else:
+            return HttpResponse('You are not allowed to delete this job.')
