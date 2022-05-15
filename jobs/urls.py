@@ -8,4 +8,5 @@ urlpatterns = [
     path('get_job/<int:id>/', views.get_job, name='get_job'),
     path('profile/send_work/', views.send_work, name='send_work'),
     path('create_job/', views.create_job, name='create_job'),
+    path('update_job/<int:job_id>/', views.update_job, name='update_job'),
 ]

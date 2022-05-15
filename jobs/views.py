@@ -1,10 +1,12 @@
 from unicodedata import category
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from .models import Jobs, User
+from .models import Jobs, User, References
 from datetime import datetime
 from django.contrib import messages
 from django.contrib.messages import constants
 from django.contrib.auth.decorators import login_required
+
 
 
 @login_required(login_url='/auth/login')
@@ -96,6 +98,7 @@ def send_work(request):
     job.save()
     return redirect('/jobs/profile')
 
+# TODO create error messages
 @login_required(login_url='/auth/login')
 def create_job(request):
     if request.method == 'GET':
@@ -104,14 +107,46 @@ def create_job(request):
     if request.method == 'POST':
         print(request.POST.get('deadline'))
 
-        new_job = Jobs.objects.create()
-        new_job.title = request.POST.get('title'),
-        new_job.references = request.FILES.get('file'),
-        new_job.description = request.POST.get('description'),
-        new_job.category = request.POST.get('category'),
-        new_job.deadline = request.POST.get('deadline'),
-        new_job.price = request.POST.get('price'),
-        new_job.creator = request.user
-                                      
+        new_reference = References()
+        new_reference.file = request.FILES.get('file')
+        new_reference.save()
+
+        new_job = Jobs()
+        new_job.title = request.POST.get('title')
+        new_job.description = request.POST.get('description')
+        new_job.category = request.POST.get('category')
+        new_job.deadline = request.POST.get('deadline')
+        new_job.price = request.POST.get('price')
+        new_job.creator = request.user                                      
         new_job.save()
+
+        new_job.references.add(new_reference)
+
+        return redirect('/jobs/find_jobs')
+
+# TODO create error messages
+@login_required
+def update_job(request, job_id):
+    if request.method == 'GET':
+        job = Jobs.objects.get(id=job_id)
+        return render(request, 'update_job.html', context={'job': job})
+    
+    if request.method == 'POST':
+        job = Jobs.objects.get(id=request.POST.get('job_id'))
+
+        if request.FILES.get('file'):
+            new_reference = References()
+            new_reference.file = request.FILES.get('file')
+            new_reference.save()
+            job.references.add(new_reference)
+
+        price = request.POST.get('price').replace(',', '.')
+
+        job.price = price
+        job.title = request.POST.get('title')
+        job.description = request.POST.get('description')
+        job.category = request.POST.get('category')
+        job.deadline = request.POST.get('deadline')
+        job.save()
+
         return redirect('/jobs/find_jobs')

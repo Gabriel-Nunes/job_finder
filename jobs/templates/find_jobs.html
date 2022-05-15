@@ -115,7 +115,15 @@
                             </div>
                             <br>
                             <br>
-                            <a href="{% url 'get_job' job.id %}" class="btn btn-success btn-lg">GET THIS JOB</a>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{% url 'get_job' job.id %}" class="btn btn-success btn-lg">GET THIS JOB</a>
+                                </div>
+                                <div class="col" style="text-align: right; margin-top: 15px;">
+                                    <a href="{% url 'update_job' job.id %}">Edit</a>
+                                </div>
+
+                            </div>
                             </div>
                         </div>
                     </div>
