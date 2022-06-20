@@ -13,9 +13,9 @@ class Jobs(models.Model):
     category_choices = (('D', 'Design'),
                      ('VE', 'Video Edition'))
     
-    status_choices = (('W', 'At working'),
+    status_choices = (('AW', 'At working'),
                     ('WA', 'Waiting approval'),
-                    ('D', 'Delivered'))
+                    ('DE', 'Delivered'))
 
     title = models.CharField(max_length=200)
     description = models.TextField()

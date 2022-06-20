@@ -99,8 +99,12 @@
                                     <p>{{job.deadline}}</p>
                                 </div>
                                 <div class="col-4">
-                                    <h6 class="titulo-body">Categoria:</h6>
-                                    <p>{{job.category}}</p>
+                                    <h6 class="titulo-body">Category:</h6>
+                                    {% if job.category == 'D' %}
+                                        <p>Design</p>
+                                    {% else %}
+                                        <p>Video edition</p>
+                                    {% endif %}
                                 </div>
                             </div>
                             <h4 style="display:inline;" class="job-modal-titulo">References:</h4>

@@ -1,5 +1,3 @@
-import re
-from unicodedata import category
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import Jobs, User, References
@@ -53,6 +51,7 @@ def find_jobs(request):
 @login_required(login_url='/auth/login')
 def get_job(request, id):
     job = Jobs.objects.get(id=id)
+    job.status = 'AW'
     job.reserved = True
     job.professional = request.user
     job.save()

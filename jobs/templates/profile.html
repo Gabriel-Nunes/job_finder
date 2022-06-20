@@ -65,7 +65,7 @@
                     <td>{{job.description}}</td>
                     {% if job.status == 'WA' %}
                         <td><button class="badge badge-info">Waiting Approval</button></td>
-                    {% elif job.status == 'W' %}
+                    {% elif job.status == 'AW' %}
                         <td><button class="badge badge-primary" data-toggle="modal" data-target="#modal-job-{{job.id}}">At Working</button></td>
                     {% else %}
                         <td><button class="badge badge-success">Delivered</button></td>
@@ -73,7 +73,7 @@
                 </tr>
                 
                 <!-- MODAL -->
-                <div class="modal fade" id="modal-job-{{job.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modal-job-{{job.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
                     <div class="modal-dialog" role="document">
                         <div style="background-color: #333;" class="modal-content">
                             <div class="modal-header">
