@@ -1,5 +1,5 @@
 
-# Job Finder 📚
+# Job Finder 🤓
 
 A complete book sharing system for kids.
 
@@ -49,10 +49,11 @@ Before using, you have to create a superuser. So open other terminal and run:
 
 #### Set your super user data.
 Now whenever you want to launch the system you can just the following command on project directory:
+ 
     docker-compose up
 
 #### You may also want to take a look at Django "admin" page at "0.0.0.0:8000".
 
->>>>>>> #### Have fun! 🤓
+>>>>>>> #### Have fun! ✅
 
 **Note: this is a demonstration project. If you intend to use it in production take a look at "https://docs.djangoproject.com/en/4.0/howto/deployment/"**
