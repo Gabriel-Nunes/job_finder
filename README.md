@@ -10,6 +10,7 @@ A complete book sharing system for kids.
 ## Technologies Used:
 - Python
 - Django
+- Docker & Docker-Compose
 - SQlite3
 - Bootstrap
 - JavaScript
