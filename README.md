@@ -35,14 +35,24 @@ Search bar is easy to use and provide a wide search to quickly find books, users
 
 To get it running on a linux server, launch the commands bellow:
 
+    sudo chmod +x install.sh
     git clone https://github.com/Gabriel-Nunes/job_finder.git
-    cd job_finder/
-    python3 -m venv venv
-    source venv/bin/activate
-    pip install --upgrade pip
-    pip install requirements.txt
-    python manage.py runserver 
+    cd /job_finder
+    ./install.sh
+ 
+Now your jobs management system is suposed to be running on 127.0.0.1:8000.
 
-Your jobs management system is suposed to be running on 127.0.0.1:8000.
+Before using, you have to create a superuser. So open other terminal and run:
+    
+    docker-compose exec web_run bash
+    python manage.py create superuser
+
+#### Set your super user data.
+Now whenever you want to launch the system you can just the following command on project directory:
+    docker-compose up
+
+#### You may also want to take a look at Django "admin" page at "0.0.0.0:8000".
 
 >>>>>>> #### Have fun! 🤓
+
+**Note: this is a demonstration project. If you intend to use it in production take a look at "https://docs.djangoproject.com/en/4.0/howto/deployment/"**
