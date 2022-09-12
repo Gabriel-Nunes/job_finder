@@ -1,7 +1,7 @@
 
 # Job Finder 🤓
 
-A complete book sharing system for kids.
+A job management system.
 
 ## Main idea
 
