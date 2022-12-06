@@ -17,13 +17,13 @@ A job management system.
     
 ## Highlights:
 
-#### Easy find and apply for a job.
+#### Easy to find and apply for a job.
 
 ![Demo](screenshots/get_job.gif)
 
-#### Bootstrap modals gives a fluid navigation and enhace the engagement.
+#### Bootstrap modals gives a fluid navigation and enhance the engagement.
 
-Search bar is easy to use and provide a wide search to quickly find books, users or authors.
+The search bar is easy to use and provide a wide search to quickly find books, users or authors.
 
 #### Profile area let the user manage his jobs easily.
 ![alt](screenshots/profile_area.png)
@@ -34,21 +34,21 @@ Search bar is easy to use and provide a wide search to quickly find books, users
 
 ## Installation
 
-To get it running on a linux server, launch the commands bellow:
+To get it running on a Linux server, launch the commands below:
 
     sudo chmod +x install.sh
     git clone https://github.com/Gabriel-Nunes/job_finder.git
     cd /job_finder
     ./install.sh
  
-Now your jobs management system is suposed to be running on 127.0.0.1:8000.
+Now your jobs management system is supposed to be running on 127.0.0.1:8000.
 
 Before using, you have to create a superuser. So open other terminal and run:
     
     docker-compose exec web_run bash
     python manage.py create superuser
 
-#### Set your super user data.
+#### Set your superuser data.
 Now whenever you want to launch the system you can just the following command on project directory:
  
     docker-compose up
@@ -57,4 +57,4 @@ Now whenever you want to launch the system you can just the following command on
 
 >>>>>>> #### Have fun! ✅
 
-**Note: this is a demonstration project. If you intend to use it in production take a look at "https://docs.djangoproject.com/en/4.0/howto/deployment/"**
+**Note: this is a demonstration project. If you intend to use it in production, take a look at "https://docs.djangoproject.com/en/4.0/howto/deployment/"**
